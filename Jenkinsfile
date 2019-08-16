@@ -196,6 +196,7 @@ pipeline {
         script {
           try {
             echo "Deploying to dev..."
+            openshiftBuild bldCfg: 'eagle-admin-build', showBuildLogs: 'true'
             openshiftTag destStream: 'eagle-admin', verbose: 'false', destTag: 'dev', srcStream: 'eagle-admin', srcTag: "${IMAGE_HASH}"
             sleep 5
 
