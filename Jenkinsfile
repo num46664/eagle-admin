@@ -125,7 +125,7 @@ pipeline {
       failFast true
       parallel {
         stage('Build') {
-          agent { label 'build' }
+          agent any
           steps {
             script {
               pastBuilds = []
