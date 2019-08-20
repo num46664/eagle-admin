@@ -161,6 +161,15 @@ pipeline {
           }
         }
 
+        stage('Linting') {
+          steps {
+            script {
+              echo "Running unit tests"
+              def results = nodejsLinter()
+            }
+          }
+        }
+
         // stage('Unit Tests') {
         //   steps {
         //     script {
