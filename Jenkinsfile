@@ -208,24 +208,24 @@ pipeline {
             openshiftTag destStream: 'eagle-admin', verbose: 'false', destTag: 'dev', srcStream: 'eagle-admin', srcTag: "${IMAGE_HASH}"
             sleep 5
 
-            openshiftVerifyDeployment depCfg: 'eagle-admin', namespace: 'esm-dev', replicaCount: 1, verbose: 'false', verifyReplicaCount: 'false', waitTime: 600000
+            openshiftVerifyDeployment depCfg: 'eagle-admin', namespace: 'mem-mmti-dev', replicaCount: 1, verbose: 'false', verifyReplicaCount: 'false', waitTime: 600000
             echo ">>>> Deployment Complete"
 
-            notifyRocketChat(
-              "@all A new version of eagle-admin is now in Dev. \n Changes: \n ${CHANGELOG}",
-              ROCKET_DEPLOY_WEBHOOK
-            )
+            // notifyRocketChat(
+            //   "@all A new version of eagle-admin is now in Dev. \n Changes: \n ${CHANGELOG}",
+            //   ROCKET_DEPLOY_WEBHOOK
+            // )
 
-            notifyRocketChat(
-              "@all A new version of eagle-admin is now in Dev and ready for QA. \n Changes to Dev: \n ${CHANGELOG}",
-              ROCKET_QA_WEBHOOK
-            )
+            // notifyRocketChat(
+            //   "@all A new version of eagle-admin is now in Dev and ready for QA. \n Changes to Dev: \n ${CHANGELOG}",
+            //   ROCKET_QA_WEBHOOK
+            // )
           } catch (error) {
-            notifyRocketChat(
-              "@all The latest deployment of eagle-admin to Dev seems to have failed\n'${error.message}'",
-              ROCKET_DEPLOY_WEBHOOK
-            )
-            error('Deploy failed')
+            // notifyRocketChat(
+            //   "@all The latest deployment of eagle-admin to Dev seems to have failed\n'${error.message}'",
+            //   ROCKET_DEPLOY_WEBHOOK
+            // )
+            echo 'Deploy failed'
           }
         }
       }
