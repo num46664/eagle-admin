@@ -139,8 +139,8 @@ pipeline {
 
               try {
                 sh("oc extract secret/rocket-chat-secrets --to=${env.WORKSPACE} --confirm")
-                ROCKET_DEPLOY_WEBHOOK = sh(returnStdout: true, script: 'cat /var/rocket/rocket-deploy-webhook')
-                ROCKET_QA_WEBHOOK = sh(returnStdout: true, script: 'cat /var/rocket/rocket-qa-webhook')
+                ROCKET_DEPLOY_WEBHOOK = sh(returnStdout: true, script: 'cat rocket-deploy-webhook')
+                ROCKET_QA_WEBHOOK = sh(returnStdout: true, script: 'cat rocket-qa-webhook')
 
                 echo "Building eagle-admin develop branch"
                 openshiftBuild bldCfg: 'eagle-admin-angular', showBuildLogs: 'true'
