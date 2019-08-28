@@ -138,6 +138,7 @@ pipeline {
               echo ">>>>>>Changelog: \n ${CHANGELOG}"
 
               try {
+                sh("oc extract secret/rocket-chat-secrets --to=${env.WORKSPACE} --confirm")
                 ROCKET_DEPLOY_WEBHOOK = sh(returnStdout: true, script: 'cat /var/rocket/rocket-deploy-webhook')
                 ROCKET_QA_WEBHOOK = sh(returnStdout: true, script: 'cat /var/rocket/rocket-qa-webhook')
 
