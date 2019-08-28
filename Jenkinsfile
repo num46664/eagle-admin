@@ -71,8 +71,11 @@ def nodejsLinter () {
           checkout scm
           try {
             // install deps to get angular-cli
-            sh 'npm install'
-            sh 'npm run lint'
+            sh '''
+              cp lint-package.json package.json
+              npm install
+              npm run lint
+            '''
           } finally {
             echo "Linting Passed"
           }
